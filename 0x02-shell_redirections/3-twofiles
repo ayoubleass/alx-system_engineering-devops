@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(cat /etc/passwd) ; echo -e $(cat /etc/hosts) "\n"
+cat /etc/passwd && cat /etc/hosts 
