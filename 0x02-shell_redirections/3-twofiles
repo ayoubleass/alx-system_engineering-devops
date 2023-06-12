@@ -1,4 +1,5 @@
 #!/bin/bash
 cat /etc/passwd 
-echo -e "\n"
+echo -e 
 cat /etc/hosts
+
