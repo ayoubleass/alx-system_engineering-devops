@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# Print the string "Best School" 10 time to the standard  output.
 i=0
 
 while [ $i -lt 10 ]; do
