@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Display "Best School" 9 times annd Hi once
+
+i=1
+
+while [ $i -le 10 ]
+do
+	if [ $i != 9 ]
+	then
+		echo "Best Schol"
+	else
+		echo "Hi"
+	fi
+	((i++))
+done
