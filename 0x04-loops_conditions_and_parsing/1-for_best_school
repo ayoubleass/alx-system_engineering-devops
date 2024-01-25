@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Print the string "Best School" 10 time to the standard  output.
+# This script is displaying "Best School" 10 times
 i=0
 
-while [ $i -lt 10 ]; do
-
+while [ $i -lt 10 ]
+do
 	echo "Best School"
 	((i++))
 done
