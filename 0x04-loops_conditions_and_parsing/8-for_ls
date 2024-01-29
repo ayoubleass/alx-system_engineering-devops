@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Display The content of the current directory
+
+for name in *
+do
+	if [ -f "$name" ]
+	then
+		file_name=$(echo "$name" | cut -d"-" -f2)
+		echo "$file_name"
+	fi
+done
