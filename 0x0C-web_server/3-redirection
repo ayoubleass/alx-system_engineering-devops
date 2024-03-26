@@ -3,15 +3,13 @@
 
 sudo apt-get update
 sudo apt-get -y install nginx
+config="	location /redirect_me {
+                	return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+            }"
 
-new_string=$(cat <<EOL
-location /redirect_me {
-    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-}
-EOL
-)
+line=$(($(wc -l < "/etc/nginx/sites-available/default") - 20))
 
-sudo sed -i "/^server {/a$new_string" /etc/nginx/sites-available/default
+echo "$config" | sudo sed -i "${line}r /dev/stdin" /etc/nginx/sites-available/default
 
 sudo service nginx restart
 
