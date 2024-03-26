@@ -11,6 +11,7 @@ location /redirect_me {
 EOL
 )
 
-sudo sed -i "/^server {/a$redirection_config" /etc/nginx/sites-available/default
+sudo sed -i "/^server {/a$new_string" /etc/nginx/sites-available/default
+
 sudo service nginx restart
 
