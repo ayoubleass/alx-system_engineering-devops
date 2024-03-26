@@ -4,8 +4,16 @@
 sudo apt-get update
 sudo apt-get -y install nginx
 echo "Hello, world" > /var/www/html/index.html
-new_string="    location /redirect_me {return 301 https://twitter.com/Emmanue17280546}"
-line=$(($(wc -l < "/etc/nginx/sites-available/default") - 20))
+echo "server{
+	listen 80 default_server;
+        listen [::]:80 default_server;
 
-sudo sed -i "${line}i$new_string" "/etc/nginx/sites-available/default"
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+	location /redirect_me {
+        	return 301 https://twitter.com/Emmanue17280546;
+	}
+}"
 sudo service nginx restart
