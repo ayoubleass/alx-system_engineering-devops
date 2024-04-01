@@ -3,10 +3,9 @@
 
 
 sudo apt-get update
-apt-get install --no-install-recommends software-properties-common -y
-add-apt-repository ppa:vbernat/haproxy-2.0 -y
+sudo apt-get install --no-install-recommends software-properties-common -y
+sudo add-apt-repository ppa:vbernat/haproxy-2.0 -y
 sudo apt-get install haproxy=2.0.\*
-
 echo '
 frontend webtasking.tech
 	bind *:80
