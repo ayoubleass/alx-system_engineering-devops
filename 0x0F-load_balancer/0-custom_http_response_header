@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+
+
+HOSTNAME=$(hostname)
+line_number=$(($(grep -n "^}" /etc/nginx/sites-available/default | cut -d ':' -f 1) -1))
+header="\tadd_header X-Served-By $HOSTNAME;"
+config_file="/etc/nginx/sites-available/default"
+echo "Hello World!" | sudo tee "/var/www/html/index.html"
+
+
+find=$(grep "add_header X-Served-By"  "/etc/nginx/sites-available/default")
+
+if [ -z "$find" ]
+then
+        sudo sed -i "${line_number}a\\$header"  "$config_file"
+        sudo service nginx restart
+fi
+
+
+find=$(grep "redirect_me" "$config_file")
+block="\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=3MbaGJN2ioQ;\n\t}"
+if [ -z "$find" ]
+then
+        sudo sed -i "${line_number}a\\$block" "$config_file"
+fi
+
+
+find=$(grep "error_page 404" "$config_file")
+block="\terror_page 404 /custom_404.html;"
+
+if [ -z "$find" ]
+then
+        echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+        sudo sed -i "${line_number}a\\$block" "$config_file"
+fi
+
+sudo service nginx restart
