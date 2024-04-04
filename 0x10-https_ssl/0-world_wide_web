@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# 
+
+subdomains=("www" "lb-01" "web-01" "web-02")
+
+
+verifydomain(){
+	if [ -n "$1" ] && [ -z "$2" ]
+	then 
+		for sub in "${subdomains[@]}"
+		do
+			subdomain="$sub"."$1"
+			result=$(dig "$subdomain" | grep -A1 "ANSWER SECTION:" | tail -n 1)
+			ip=$(echo "$result" | awk '{print $5}')
+			recordtype=$(echo "$result" | awk '{print $4}')
+			echo "The subdomain ${sub} is a ${recordtype} record and points to ${ip}"
+		done
+	elif [ -n "$2" ]
+	then
+		for sub in "${subdomains[@]}"
+		do
+			
+			if [ "$sub" == "$2" ]
+			then
+				subdomain="$2"."$1"
+				result=$(dig "$subdomain" | grep -A1 "ANSWER SECTION:" | tail -n 1)
+				ip=$(echo "$result" | awk '{print $5}')
+				recordtype=$(echo "$result" | awk '{print $4}')
+				echo "The subdomain ${sub} is a ${recordtype} record and points to ${ip}"
+			fi
+		done
+	fi
+}
+
+verifydomain "$1" "$2"
