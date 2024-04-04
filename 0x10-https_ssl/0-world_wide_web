@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 
+# This script isplay information about subdomains 
 
 subdomains=("www" "lb-01" "web-01" "web-02")
 
