@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-#
+# Thi script configures a server to listen on port 80
 
 
 
 
-if [ -z $(command -v nginx) ]
+if [ -n $(command -v nginx) ]
 then
-	
+	sudo sed -i 's/^\s*listen\s*\(.*\);/    listen 80;/g' /etc/nginx/sites-available/default
+	sudo service nginx restart
+fi	
