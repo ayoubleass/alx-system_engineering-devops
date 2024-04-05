@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Thi script configures a server to listen on port 80
-rm -f /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo sed -i  "s/8080/80/g" /etc/nginx/sites-enabled/default
 sudo service nginx restart
 pkill -o nginx
