@@ -4,7 +4,7 @@
 user=$(grep  "user" /etc/nginx/nginx.conf | cut -d" " -f 2 | tr  -d ";")
 port=$(grep "listen" /etc/nginx/sites-available/default | head -n 1 | cut -d " " -f2)
 
-if [ "$port" != "80" ]
+if [ "$port" != "8080" ]
 then
 	sed -i 's/80/8080/g' /etc/nginx/sites-available/default
 
@@ -12,6 +12,6 @@ fi
 if [ "$user" != "nginx" ]
 then
 	
-        sed -i "s/^user .*/user nginx/" /etc/nginx/nginx.conf 
+        sed -i "s/^user .*/user nginx;/" /etc/nginx/nginx.conf 
 fi
 sudo -u nginx service nginx restart
