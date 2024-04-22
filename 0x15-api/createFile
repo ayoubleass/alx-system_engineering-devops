@@ -14,9 +14,8 @@ comment="$2"
 
 content=$(cat <<EOF
 $first_line\n
-\"\"\"\"$comment\"\"\"
+'''$comment'''
 
 EOF
 )
-echo -e "$content" > $filename""
-
+echo "$content" > $file_name""
