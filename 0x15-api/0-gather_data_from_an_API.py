@@ -19,8 +19,8 @@ if __name__ == "__main__":
             total_tasks += 1
             if task.get('completed') is True:
                 tasks_completed += 1
-                titles.append(task.get('title'))
+                titles.append("\t " + task.get('title'))
     print("Employee {} is done with tasks({}/{}):".format(
         name, tasks_completed, total_tasks)
          )
-    print("\n".join("\t" + title for title in titles))
+    print("\n".join(titles))
