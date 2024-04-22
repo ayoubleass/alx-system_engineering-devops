@@ -8,10 +8,7 @@ from sys import argv
 url = "https://jsonplaceholder.typicode.com/users/{}".format(argv[1])
 r = requests.get(url)
 name = r.json().get('name')
-user_id = r.json().get('id')
-url = "https://jsonplaceholder.typicode.com/todos/"
-r = requests.get(url)
-
+r = requests.get("https://jsonplaceholder.typicode.com/todos/")
 tasks_completed = 0
 total_tasks = 0
 titles = []
