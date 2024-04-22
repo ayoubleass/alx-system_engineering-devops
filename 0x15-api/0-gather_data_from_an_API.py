@@ -17,7 +17,7 @@ if __name__ == "__main__":
     for task in r.json():
         if int(user_id) == task.get("userId"):
             total_tasks += 1
-            if task.get('completed'):
+            if task.get('completed') is True:
                 tasks_completed += 1
                 titles.append(task.get('title'))
     print("Employee {} is done with tasks({}/{}):".format(
