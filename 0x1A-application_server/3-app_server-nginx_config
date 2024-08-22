@@ -39,4 +39,5 @@ server {
                 rewrite /airbnb-dynamic/(.*) $1 break;
                 proxy_pass http://127.0.0.1:5001;
         }
+	add_header X-Served-By 428471-web-01;
 }
